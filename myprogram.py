@@ -47,12 +47,14 @@ def program() -> None:
     # %   (modulo; remainder after division)
     # ** (or, preferably, math.pow)
 
-    # print(2 ** 5) # Prints 32
+    # print(2 ** 5) # Prints 32, but may confuse Mypy
     print(math.pow(2, 5)) # Less confusing to Mypy
 
     # Static means before runtime.
     # Mypy is a static analysis tool, specifically a type checker.
-
+    # Analyzes code before runtime to make sure there are no type errors.
+    # It has a hard time understanding the types of ** operations.
+    
 
 if __name__ == '__main__':
     program()
