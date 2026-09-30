@@ -1,5 +1,26 @@
 import math
 
+# A global variable is a communication channel between
+# every function in the entire file
+
+# This here is global scope
+# my_variable = 'hello' # You shouldn't do this, usually
+
+# Inside the parens, you put parameters.
+#       (placeholders for function inputs)
+# After closing parens, you put -> return_type
+#       (the type of data produced by the function)
+def add(x: float, y: float) -> float: # function header
+    # Function body must be indented
+
+    z2 = x + y
+    return z2 # The function is now over
+    # print('hello') # This is dead code (useless)
+
+
+def print_hello() -> None:
+    print('Hello')
+
 # A given computer understands its own machine language, and nothing else.
 
 # Programs written in any other language have to be translated
@@ -97,6 +118,31 @@ def program() -> None:
     # If you type cast from int to float, the rule is
     # tack on a .0
     print(float(7))
+
+    # To use (call) a function in Python, write the name,
+    # then parens, then the arguments inside those parens
+    # Arguments are the actual inputs to the function.
+    print(add(2.0, 9.0))
+    # equivalent to print(11.0)
+    print(2.0 + 9.0)
+
+    cool_variable = add(3.14, 9.81)
+
+    print_hello()
+
+    # A scope is a region of code in which a symbol is accessible.
+    # A symbol is a name.
+
+    # Generally speaking, a symbol's scope is the scope in which it
+    # is created.
+
+    # In Python, there are three kinds of scopes:
+    # 1. Global scope (module scope / file scope)
+    # 2. Function-local scope.
+    #       Every function has its own function-local scope.
+    # 3. Class scope
+
+    # print(z2) # This is an error
 
 if __name__ == '__main__':
     program()
