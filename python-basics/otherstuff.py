@@ -2,12 +2,24 @@
 # import math # This is a full-package / full-module import
 from math import pow, sqrt, sin as math_sin # This is individual object imports
 
+def change_me(x: int) -> None:
+    x = 10
+
+def change_me_list(l: list[str]) -> None:
+    l[0] = 'Macaroni' # This actually modifies my_list[0]
+
 def sin() -> None:
     print('Gluttony, the deadly sin')
 
 def print_list(the_list: list[str]) -> None:
     for i in the_list:
         print(i)
+
+def b() -> None:
+    print(int('hello'))
+
+def a() -> None:
+    b()
 
 def main() -> None:
     # standard output is a special stream, typically hooked up to the
@@ -124,6 +136,28 @@ def main() -> None:
     # Lists are iterables.
     for word in my_list:
         print(word)
+
+    # You can modify elements within a list
+    my_list[0] = 'jello'
+    print(my_list[0]) # Prints jello
+
+    x2 = 1
+    change_me(x2)
+    print(x2) # Prints 1 (argument and parameter are DIFFERENT variables!)
+
+    change_me_list(my_list)
+
+    # You might look up list comprehensions, + operator on lists, lots of
+    # other list methods, etc
+
+    my_cool_string = ("jfdsajfdsajfdsjafjdsafjdsajfds"
+        "fdsjafdsjafdjsafjdsajfdsa"
+        "fdsajfdsjafdjsafdjsajfdsa")
+
+    # a()
+
+    my_cool_variable: float = 1
+    my_cool_variable = 3.14
 
 
 
