@@ -1,3 +1,19 @@
+# import typing
+from typing import TextIO
+
+def read_from_file(the_file: TextIO) -> None:
+    for line in the_file:
+        line = line.strip()
+        tokens = line.split(',')
+
+        last_name = tokens[0]
+        first_name = tokens[1]
+        age = int(tokens[2])
+
+        print(f'Name: {first_name} {last_name}')
+        print(f'Age: {age}')
+        print()
+
 def main() -> None:
     # Standard I/O:
 
@@ -16,15 +32,18 @@ def main() -> None:
     # r: Reading
     # w: Writing
     # a: Appending
-    with open('data.txt', 'r') as my_awesome_file:
-        # Context manager body
 
-        # Here is where we do our file reading
-        
-        # my_awesome_file is an iterable
-        for line in my_awesome_file:
-            line = line.strip()
-            print(line)
+    try:
+        with open('data.txt', 'r') as my_awesome_file:
+            # Context manager body
+
+            # Here is where we do our file reading
+            
+            # my_awesome_file is an iterable
+            read_from_file(my_awesome_file)
+    except FileNotFoundError as my_exception:
+        print('Error: data.txt not found')
+        return
 
 
     # Once the context manager is over, my_awesome_file technically
