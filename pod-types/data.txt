@@ -1,0 +1,2 @@
+Corvallis,60000
+Portland,630000
