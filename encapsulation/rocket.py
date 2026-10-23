@@ -1,26 +1,18 @@
 from vector3 import Vector3
 
-class Rocket:
-    # This list of Vector3 objects keeps a record of the rocket's
-    # flight path so far, relative to the launch pad, as sourced from
-    # the rocket's GPS module. The last element
-    # in the list represents the rocket's current location.
+# The SensorData class provides an interface, and an implementation.
+class SensorData:
     gps_flight_path: list[Vector3]
-    deployed_parachute: bool
-
     acceleration: Vector3
     velocity: Vector3
     position: Vector3
-    
+
     def __init__(self) -> None:
-        # Rocket is initially resting on the launch pad, so initialize
-        # gps_flight_path to contain a single Vector3 object with x, y,
-        # and z all equal to zero.
         self.gps_flight_path = [Vector3()]
-        self.deployed_parachute = False
         self.acceleration = Vector3()
         self.velocity = Vector3()
         self.position = Vector3()
+        
 
     def query_gps(self) -> None:
         new_position = Vector3()
@@ -51,19 +43,52 @@ class Rocket:
         self.position.y += self.velocity.y
         self.position.z += self.velocity.z
 
+    # The goal of encapsulation is to hide away brittle implementation
+    # details, or design decisions. And you absorb their coupling
+    # with stable interfaces in front of them.
+
+    # YAGNI
+
+    # This is known as a getter. A getter is just a method
+    # that returns data that's somehow stored within the
+    # object in question.
+    def get_position(self) -> Vector3:
+        return self.position
+
+    def get_velocity(self) -> Vector3:
+        return self.velocity
+
+    def get_acceleration(self) -> Vector3:
+        return self.acceleration
+        
+
+class Rocket:
+    # This list of Vector3 objects keeps a record of the rocket's
+    # flight path so far, relative to the launch pad, as sourced from
+    # the rocket's GPS module. The last element
+    # in the list represents the rocket's current location.
+    deployed_parachute: bool
+    
+    # Composition
+    sensor_data: SensorData
+ 
+    def __init__(self) -> None:
+        # Rocket is initially resting on the launch pad, so initialize
+        # gps_flight_path to contain a single Vector3 object with x, y,
+        # and z all equal to zero.
+        self.deployed_parachute = False
+        self.sensor_data = SensorData()
+
+    def query_sensor_data(self) -> None:
+        # Delegation.
+        # We have delegated the responsibility of querying the individual
+        # sensors to the SensorData class.
+        self.sensor_data.query_gps()
+        self.sensor_data.query_accelerometer()
+
     def actuate_fins(self) -> None:
         # Get rocket's current position
-        current_position = \
-            self.gps_flight_path[len(self.gps_flight_path) - 1]
-
-        # Approximate rocket's current velocity based on difference
-        # between last two positions
-        previous_position = \
-            self.gps_flight_path[len(self.gps_flight_path) - 2]
-        current_velocity = Vector3()
-        current_velocity.x = current_position.x - previous_position.x
-        current_velocity.y = current_position.y - previous_position.y
-        current_velocity.z = current_position.z - previous_position.z
+        current_velocity = self.sensor_data.get_velocity()
 
         # Here, we would somehow use current_position and
         # current_velocity to determine how the fins should be actuated
@@ -78,17 +103,7 @@ class Rocket:
             return
 
         # Get rocket's current position
-        current_position = \
-            self.gps_flight_path[len(self.gps_flight_path) - 1]
-
-        # Approximate rocket's current velocity based on difference
-        # between last two positions
-        previous_position = \
-            self.gps_flight_path[len(self.gps_flight_path) - 2]
-        current_velocity = Vector3()
-        current_velocity.x = current_position.x - previous_position.x
-        current_velocity.y = current_position.y - previous_position.y
-        current_velocity.z = current_position.z - previous_position.z
+        current_velocity = self.sensor_data.get_velocity()
 
         # Let's say the parachute is meant to be deployed at
         # apogee (peak of trajectory). Let's say the y coordinate
@@ -104,17 +119,10 @@ class Rocket:
 
     def log_data(self) -> None:
         # Get rocket's current position
-        current_position = \
-            self.gps_flight_path[len(self.gps_flight_path) - 1]
         
-        # Approximate rocket's current velocity based on difference
-        # between last two positions
-        previous_position = \
-            self.gps_flight_path[len(self.gps_flight_path) - 2]
-        current_velocity = Vector3()
-        current_velocity.x = current_position.x - previous_position.x
-        current_velocity.y = current_position.y - previous_position.y
-        current_velocity.z = current_position.z - previous_position.z
+        current_velocity = self.sensor_data.get_velocity()
+        current_position = self.sensor_data.get_position()
+        current_acceleration = self.sensor_data.get_acceleration()
 
         # Here, we would somehow send current_position and
         # current_velocity to the ground receiver for monitoring.
