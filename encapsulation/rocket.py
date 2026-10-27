@@ -2,15 +2,27 @@ from vector3 import Vector3
 
 # The SensorData class provides an interface, and an implementation.
 class SensorData:
+    # Private attributes in many other programming languages are attributes
+    # that CANNOT POSSIBLY be accessed from anywhere in the codebase
+    # other than within the class that defines them. Private attributes
+    # effectively enforce encapsulation.
+
+    # Private attributes don't exist in Python.
+    # Instead, Python has a convention.
+    # If an attribute starts with an _, then developers
+    # should treat it as a private attribute.
+
+    # A common expression in Python: "We're all consenting
+    # adults here".
     gps_flight_path: list[Vector3]
     acceleration: Vector3
-    velocity: Vector3
+    _velocity: Vector3
     position: Vector3
 
     def __init__(self) -> None:
         self.gps_flight_path = [Vector3()]
         self.acceleration = Vector3()
-        self.velocity = Vector3()
+        self._velocity = Vector3()
         self.position = Vector3()
         
 
@@ -36,18 +48,16 @@ class SensorData:
 
         # Now, update velocity and position accordingly (note: this is
         # an oversimplification)
-        self.velocity.x += self.acceleration.x
-        self.velocity.y += self.acceleration.y
-        self.velocity.z += self.acceleration.z
-        self.position.x += self.velocity.x
-        self.position.y += self.velocity.y
-        self.position.z += self.velocity.z
+        self._velocity.x += self.acceleration.x
+        self._velocity.y += self.acceleration.y
+        self._velocity.z += self.acceleration.z
+        self.position.x += self._velocity.x
+        self.position.y += self._velocity.y
+        self.position.z += self._velocity.z
 
     # The goal of encapsulation is to hide away brittle implementation
     # details, or design decisions. And you absorb their coupling
     # with stable interfaces in front of them.
-
-    # YAGNI
 
     # This is known as a getter. A getter is just a method
     # that returns data that's somehow stored within the
@@ -56,7 +66,7 @@ class SensorData:
         return self.position
 
     def get_velocity(self) -> Vector3:
-        return self.velocity
+        return self._velocity
 
     def get_acceleration(self) -> Vector3:
         return self.acceleration
