@@ -6,6 +6,6 @@ class Dog:
         self._name = name
         self._age = age
 
-    def bark(self) -> None:
+    def vocalize(self) -> None:
         print(f'Bark! Bark! My name is {self._name}, and I am {self._age} '
               f'years old.')

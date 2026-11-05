@@ -1,0 +1,29 @@
+Think up an inheritance relationship, in
+terms of is-a relationships.
+
+Ex: A husky is a dog.
+
+Express that relationship in Python code.
+
+Create two classes: a parent class and a
+child class. Each class should have
+one attribute and a constructor.
+
+Submit a screenshot / proof of work to 
+anvas -> modules -> week 6 ->
+in-class activity.
+
+e.g.,
+
+class Fruit:
+	_color: str
+	def __init__(self, color: str) -> None:
+		self._color = color
+
+class Apple(Fruit):
+	_diameter: float
+	def __init__(self, color: str, diameter: float) -> None:
+		super().__init__(color)
+		self._diameter = diameter
+
+
