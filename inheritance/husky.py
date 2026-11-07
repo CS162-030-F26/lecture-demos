@@ -19,7 +19,7 @@ class Husky(Dog):
     # a derived class
     _energy: int
 
-    def __init__(self, name: str, age: int) -> None:
+    def __init__(self, owner: str, name: str, age: int) -> None:
         # self._name = name # Violation of encapsulation
         # self._age = age # Same as above
 
@@ -27,7 +27,7 @@ class Husky(Dog):
         # _age of self, so I delegate that responsibility to a method of the
         # Dog class:
         # self.__init__(name, age) # This tells this function to call itself
-        super().__init__(name, age) # This runs the Dog class constructor on self
+        super().__init__(owner, name, age) # This runs the Dog class constructor on self
 
 
         self._energy = 100

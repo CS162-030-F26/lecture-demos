@@ -3,7 +3,7 @@ from husky import Husky
 from sled import Sled
 
 def main() -> None:
-    spot = Dog('Spot', 3)
+    spot = Dog('David', 'Spot', 3)
     spot.vocalize() # This calls the Dog-class vocalize method
 
     # The Husky class now has two constructors.
@@ -13,7 +13,7 @@ def main() -> None:
     # cases, by default, when you try to call the method,
     # the one that gets called is the one that is in the "most derived"
     # class.
-    delilah = Husky('Delilah', 4)
+    delilah = Husky('Alice', 'Delilah', 4)
     delilah.vocalize() # This calls the Husky-class vocalize method (the override)
 
     super(Husky, delilah).vocalize() # This calls the Dog-class vocalize method
