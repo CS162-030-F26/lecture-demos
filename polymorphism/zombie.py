@@ -1,3 +1,5 @@
+from typing import override
+
 from player import Player
 from monster import Monster
 
@@ -7,6 +9,11 @@ class Zombie(Monster):
     def __init__(self) -> None:
         self._sanity = 3
 
+    # The override decorator asserts that the
+    # method in question is an override. You
+    # SHOULD use the override decorator whenever
+    # overriding a method.
+    @override
     def attack_player(self, player: Player) -> None:
         print('Zombie is attacking the player')
         if self._sanity > 0:

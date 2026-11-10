@@ -1,4 +1,5 @@
 from player import Player
+from skeleton import Skeleton
 from zombie import Zombie
 from vampire import Vampire
 from monster import Monster
@@ -7,7 +8,13 @@ def do_turn(
         player: Player,
         monsters: list[Monster]) -> None:
     for m in monsters:
+        # In a given iteration, if m happens to refer to
+        # a Zombie object, this will call the ZOmbie's
+        # attack_player() override. If m happens to refer
+        # to a Vampire object, this will call the Vampire's
+        # attack_player() override.
         m.attack_player(player)
+
 
     player.print()
 
@@ -28,6 +35,16 @@ def main() -> None:
 
     for _ in range(3):
         monsters.append(Vampire())
+
+    # Abstract classes cannot be instantiated.
+    # Basically, they have some unimplemented
+    # interfaces.
+    # m = Monster() # This would raise errors
+    # monsters.append(m)
+
+    # Skeleton is also abstract because it doesn't
+    # override attack_player()
+    # s = Skeleton() # THis also doesn't work
 
     while player.is_alive():
         # Monsters attack the player
