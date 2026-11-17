@@ -1,0 +1,18 @@
+A mathematical function f(x) is recursive if part of its definition
+refers to itself.
+
+f(1) = 0
+f(2) = 1
+f(x) = f(x - 1) + f(x - 2) ,
+    for all x >= 2
+
+(x must be a positive integer)
+
+There's a sequence of numbers known as the fibonacci sequence:
+
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55
+
+From a programming standpoint, a recursive function is often thought of
+as simply any function that calls itself, directly or indirectly.
+
+

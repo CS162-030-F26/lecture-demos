@@ -1,0 +1,26 @@
+Try your best to implement a generic class called Pair that represents
+a pair of things.
+
+Specifically, a pair is simply a collection of two objects. Those two things
+may be of different types.
+
+For example, I might want to construct a pair that consists of an integer
+and a string.
+
+Or maybe I want to construct a pair that consists of a Rocket and a Pokemon.
+
+Hint: Your Pair generic class will need TWO generic type parameters.
+It must have two fields, and a constructor that accepts two corresponding
+arguments to initialize those fields. The fields should be public.
+They can have whatever names you want.
+
+class Pair[T1, T2]:
+	field1: T1
+	field2: T2
+
+	def __init__(self, arg1: T1, arg2: T2) -> None:
+		self.field1 = arg1
+		self.field2 = arg2
+
+	
+

@@ -3,6 +3,8 @@ from car import Car
 
 from vendor import Vendor
 
+def print_list(numbers: list[int])
+
 def main() -> None:
     jacob = Vendor[Furniture]()
 
@@ -35,6 +37,8 @@ def main() -> None:
     samantha.sell_item(0)
 
     samantha.print()
+
+    
 
 
 if __name__ == '__main__':
