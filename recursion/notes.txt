@@ -16,3 +16,22 @@ From a programming standpoint, a recursive function is often thought of
 as simply any function that calls itself, directly or indirectly.
 
 
+
+
+
+
+
+
+
+Suppose you want to delete a directory. But first, check if the directory
+has stuff in it, and if so, delete that stuff. But first, check if some of
+that stuff is, in turn, directories, and if so, delete the stuff inside them.
+
+rm_recursively(d):
+	for each entry e within d:
+		if e is a directory:
+			rm_recursively(e)
+			rmdir(d)
+		else:
+			rm(e)
+

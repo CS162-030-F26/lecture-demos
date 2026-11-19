@@ -14,8 +14,15 @@ def f(x: int) -> int:
         # that the answers are "obvious".
         return f(x - 1) + f(x - 2)
 
+# Solutions to speed up this algorithm:
+# 1. Memoization is caching of answers as they're computed
+# 2. Dynamic programming. This is a general algorithmic design
+#     strategy.
+
+
+
 def main() -> None:
-    print(f(100))
+    print(f(11))
 
 if __name__ == '__main__':
     main()
