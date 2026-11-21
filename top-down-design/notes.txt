@@ -1,0 +1,44 @@
+Pseudocode is a hybrid / blend between programming code and English.
+There is no single formal specification dictating the syntax for
+pseudocode. However, the general understanding is that pseudocode
+is meant to be an English-like description of a series of computational
+steps outlining an algorithm / procedure.
+
+It might be a bunch of sentences, where each sentence maps to a line
+of code in a real implementation.
+
+Pseudocode is one tool that we can use to build software design models.
+
+A software design model is a model (representation) of a software application
+or a component of a software application. It is not an implementation.
+
+function first_root_of_quadratic(a, b, c):
+	determinant <- b^2 - 4ac
+	sqrt_determinant <- sqrt(determinant)
+	numerator <- -b - sqrt_determinant
+	demoninator <- 2*a
+	return numerator / denominator
+
+The goal of a software design model is to help you work out the design
+details without worrying about syntax details, while also serving
+as a communication tool to other programmers.
+
+A really good software design model could be given to any really good
+engineer, and they could implement it, and their implementation would
+do exactly what the original software was supposed to do.
+
+In practice, we tend to stop designing a bit early.
+
+There are two broad strategies for software design:
+1. Top-down design
+2. Bottom-up design
+
+Top-down design is more common, esp for large problems. Some people
+describe top-down design as a form of "reverse engineering". You're working
+backward from the end goal.
+
+1. What is a high level problem that needs to be solved?
+2. Break it down into a few smaller problems
+3. Repeat from step 1 for each of them, until your problems are small
+    enough that you feel comfortable terminating the design process
+    and moving to implementation

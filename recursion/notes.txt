@@ -35,3 +35,22 @@ rm_recursively(d):
 		else:
 			rm(e)
 
+
+
+
+
+
+a = 64
+b = 6
+c = 60
+d = a - c
+
+1, 2, 4, 8, 16, 32, 64
+1, 2, 3, 6
+
+
+
+If you count by multiples of the GCD, you'll eventually reach
+b, then if you keep going, you'll eventually reach the largest multiple of
+b that is still smaller than a, then if you keep going from there,
+you'll eventually reach a
